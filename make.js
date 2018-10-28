@@ -1,7 +1,14 @@
-function sum (){
-for (var i = 1; i<arguments.length; i++ ){
-var c = +arguments[0];
-c = c + arguments[i];
-}
-return c;
+function make (...t){
+
+    const a = [];
+
+    function g(fun){
+        if (typeof fun == 'function'){
+            const res = a.reduce(fun, 0);
+            return res;
+        }
+        a.push(...arguments);
+        return g;
+    }
+    return g(...t);
 }
